@@ -2,6 +2,7 @@ class PuzzleDetector {
   constructor() {
     this.puzzles = [];
     this.hintPanel = null;
+    this.isActive = true;
     this.init();
   }
 
@@ -181,12 +182,56 @@ class PuzzleDetector {
       subtree: true
     });
   }
+
+  handleMessage(request, sender, sendResponse) {
+    switch(request.action) {
+      case 'scanPuzzles':
+        this.scanForPuzzles();
+        sendResponse({success: true, count: this.puzzles.length});
+        break;
+        
+      case 'toggleHints':
+        this.isActive = !this.isActive;
+        if (this.isActive) {
+          this.puzzles.forEach(puzzle => {
+            puzzle.style.display = 'block';
+          });
+        } else {
+          this.puzzles.forEach(puzzle => {
+            puzzle.style.display = 'none';
+          });
+        }
+        sendResponse({success: true, active: this.isActive});
+        break;
+        
+      case 'getStatus':
+        sendResponse({puzzlesFound: this.puzzles.length});
+        break;
+        
+      case 'quickScan':
+        this.scanForPuzzles();
+        break;
+        
+      case 'pageLoaded':
+        setTimeout(() => this.scanForPuzzles(), 2000);
+        break;
+    }
+  }
 }
+
+let detector;
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    new PuzzleDetector();
+    detector = new PuzzleDetector();
   });
 } else {
-  new PuzzleDetector();
-} 
+  detector = new PuzzleDetector();
+}
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (detector) {
+    detector.handleMessage(request, sender, sendResponse);
+  }
+  return true;
+}); 

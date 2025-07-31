@@ -1,0 +1,84 @@
+.puzzle-highlight {
+  border: 2px solid #ff6b6b !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+  margin: 5px !important;
+  background-color: rgba(255, 107, 107, 0.1) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.puzzle-highlight:hover {
+  background-color: rgba(255, 107, 107, 0.2) !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3) !important;
+}
+
+#puzzle-hint-panel {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 300px !important;
+  max-height: 400px !important;
+  background: white !important;
+  border: 2px solid #4ecdc4 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+  z-index: 10000 !important;
+  padding: 15px !important;
+  font-family: Arial, sans-serif !important;
+  display: none !important;
+  overflow-y: auto !important;
+  animation: slideIn 0.3s ease-out !important;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hint-item {
+  margin: 8px 0 !important;
+  padding: 8px !important;
+  background: #f8f9fa !important;
+  border-radius: 5px !important;
+  border-left: 3px solid #4ecdc4 !important;
+}
+
+.hint-item:hover {
+  background: #e9ecef !important;
+}
+
+.close-button {
+  background: #e74c3c !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 5px 10px !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+
+.close-button:hover {
+  background: #c0392b !important;
+}
+
+.puzzle-title {
+  margin: 0 !important;
+  color: #2c3e50 !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+}
+
+.hint-text {
+  color: #34495e !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+} 
