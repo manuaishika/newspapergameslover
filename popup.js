@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       const currentUrl = tabs[0].url;
       
-      if (currentUrl.includes('indianexpress.com')) {
+      if (currentUrl.includes('indianexpress.com') || 
+          currentUrl.includes('file://') || 
+          currentUrl.includes('chrome-extension://')) {
         statusText.textContent = 'Ready to help with puzzles!';
         statusDiv.className = 'status active';
         
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       } else {
-        statusText.textContent = 'Please visit The Indian Express website';
+        statusText.textContent = 'Visit a newspaper site or open a PDF in Chrome';
         statusDiv.className = 'status inactive';
       }
     });

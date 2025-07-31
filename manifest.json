@@ -6,17 +6,22 @@
   "permissions": [
     "activeTab",
     "storage",
-    "scripting"
+    "scripting",
+    "tabs"
   ],
   "host_permissions": [
     "https://indianexpress.com/*",
-    "https://*.indianexpress.com/*"
+    "https://*.indianexpress.com/*",
+    "file://*",
+    "chrome-extension://*"
   ],
   "content_scripts": [
     {
       "matches": [
         "https://indianexpress.com/*",
-        "https://*.indianexpress.com/*"
+        "https://*.indianexpress.com/*",
+        "file://*",
+        "chrome-extension://*"
       ],
       "js": ["content.js"],
       "css": ["styles.css"]
